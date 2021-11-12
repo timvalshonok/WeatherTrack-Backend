@@ -1,6 +1,6 @@
 @isTest
-private class TestAccountTrigger {
-    @isTest static void testCreateAccount() {
+private class AccountTriggerTest {
+    @isTest static void createAccountTest() {
         Account acc = new Account(Name='Test Account', BillingCity='Paris');
         
         Test.startTest();
@@ -11,7 +11,7 @@ private class TestAccountTrigger {
         System.assertEquals(acc.Id, tracker[0].Account__c, 'Should be create tracker with Account__c equal to acc.Id');
     }
 
-    @isTest static void testChangeAccountBillingCity() {
+    @isTest static void changeAccountBillingCityTest() {
         Account acc = new Account(Name='Test Account', BillingCity='Paris');
         insert acc;
 
