@@ -1,7 +1,7 @@
 @isTest
-public class TestWeatherTrackNightlyJob {
+public class WeatherTrackNightlyJobTest {
 
-    @isTest static void testWeatherTrackNightlyJob_positive() {
+    @isTest static void weatherTrackNightlyJobTest_positive() {
         
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new WeatherTrackMock());
@@ -15,7 +15,7 @@ public class TestWeatherTrackNightlyJob {
         System.assertEquals(1, actual, 'Should be 1 record with Description - clear sky, and Humidity - 1023');
     }
 
-    @isTest static void testWeatherTrackNightlyJob_negative() {
+    @isTest static void weatherTrackNightlyJobTest_negative() {
         
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new WeatherTrackMock());
