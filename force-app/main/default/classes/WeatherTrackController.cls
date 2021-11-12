@@ -6,7 +6,7 @@ public inherited sharing class WeatherTrackController {
             SELECT Id, BillingCity FROM Account WHERE Id IN :accountsIds AND BillingCity != null
         ];
 
-        for (Account acc : accountsList){
+        for (Account acc : accountsList) {
             String apiKey = '66e898cb6656efddfccd3afa1e8e8908';
             String reqEndPoint = 'http://api.openweathermap.org/data/2.5/weather';
             reqEndPoint += '?q='+acc.BillingCity;
@@ -16,10 +16,9 @@ public inherited sharing class WeatherTrackController {
             HttpRequest request = new HttpRequest();
             request.setEndpoint(reqEndPoint);
             request.setMethod('GET'); 
-            HttpResponse res = http.send(request);
-            String responseBody = res.getBody();
-            System.debug(responseBody);
-            if(res.getStatusCode() == 200){
+            HttpResponse result = http.send(request);
+            String responseBody = result.getBody();
+            if(result.getStatusCode() == 200) {
                 Map<String,Object> responseMap = (Map<String,object>)JSON.deserializeUntyped(responseBody);
                 Map<String,Object> mainMap = (Map<String,Object>)responseMap.get('main');
                 Integer temp = Integer.valueOf(mainMap.get('temp'));
@@ -39,7 +38,7 @@ public inherited sharing class WeatherTrackController {
                 );
                 insert tracker;
             } else {
-                System.debug(res.getBody());
+                System.debug(result.getBody());
             }
         }
     }
