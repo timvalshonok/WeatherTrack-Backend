@@ -2,9 +2,7 @@ public inherited sharing class WeatherTrackController {
 
     @future(callout=true)
     public static void createWeatherTracker(List<Id> accountsIds) {
-        List<Account> accountsList = [
-            SELECT Id, BillingCity FROM Account WHERE Id IN :accountsIds AND BillingCity != null
-        ];
+        List<Account> accountsList = [SELECT Id, BillingCity FROM Account WHERE Id IN :accountsIds AND BillingCity != null];
 
         for (Account acc : accountsList) {
             String apiKey = '66e898cb6656efddfccd3afa1e8e8908';
