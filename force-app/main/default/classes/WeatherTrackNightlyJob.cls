@@ -6,32 +6,32 @@ public class WeatherTrackNightlyJob implements Database.Batchable<sObject>, Data
         );
     }
 
-    public void execute(Database.BatchableContext bc, List<Account> accs){
+    public void execute(Database.BatchableContext bc, List<Account> accs) {
         List<Id> accsIds = new List<Id>();
 
-        for(Account acc : accs){
+        for(Account acc : accs) {
             List<Weather_Track__c> trackers = [
                 SELECT Id, Account__c, Date__c
                 FROM Weather_Track__c
                 WHERE Account__c = :acc.Id
             ];
-            if(trackers.size() == 0){
+            if(trackers.size() == 0) {
                 accsIds.add(acc.Id);
             }
-            if((trackers.size() != 0) && trackers[0].Date__c == System.today()){
+            if((trackers.size() != 0) && trackers[0].Date__c == System.today()) {
                 continue;
             }
-            else{
+            else {
                 accsIds.add(acc.Id);
             }
         }
-        if(accsIds.size() != 0){
+        if(accsIds.size() != 0) {
             List<Account> accountsList = [
             SELECT Id, BillingCity FROM Account WHERE Id IN :accsIds AND BillingCity != null
             ];
             List<Weather_Track__c> weatherTrackers = new List<Weather_Track__c>();
 
-            for (Account acc : accountsList){
+            for (Account acc : accountsList) {
                 String apiKey = '66e898cb6656efddfccd3afa1e8e8908';
                 String reqEndPoint = 'http://api.openweathermap.org/data/2.5/weather';
                 reqEndPoint += '?q='+acc.BillingCity;
@@ -46,7 +46,7 @@ public class WeatherTrackNightlyJob implements Database.Batchable<sObject>, Data
                 try {
                     HttpResponse res = http.send(request);
                     String responseBody = res.getBody();
-                    if(res.getStatusCode() == 200){
+                    if(res.getStatusCode() == 200) {
                         Map<String,Object> responseMap = (Map<String,object>)JSON.deserializeUntyped(responseBody);
                         Map<String,Object> mainMap = (Map<String,Object>)responseMap.get('main');
                         Integer temp = Integer.valueOf(mainMap.get('temp'));
@@ -73,8 +73,8 @@ public class WeatherTrackNightlyJob implements Database.Batchable<sObject>, Data
             insert weatherTrackers;
         }
     }
-
-    public void finish(Database.BatchableContext bc){
+    
+    public void finish(Database.BatchableContext bc) {
         System.debug('weather trackers updated');
     }
 }
