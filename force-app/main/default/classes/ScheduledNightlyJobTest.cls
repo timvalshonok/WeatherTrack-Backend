@@ -1,6 +1,6 @@
 @isTest
-private class TestScheduledNightlyJob {
-    static testMethod void testScheduledNightlyJob() {
+private class ScheduledNightlyJobTest {
+    static testMethod void scheduledNightlyJobTest() {
         test.startTest();
         ScheduledNightlyJob testClass = new ScheduledNightlyJob ();   
         String cron = '0 0 23 * * ?';        
