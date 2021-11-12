@@ -1,8 +1,7 @@
 @isTest
-public class TestWeatherTrackController {
+public class WeatherTrackControllerTest {
 
-    @isTest static void testCreateWeatherTrack() {
-
+    @isTest static void createWeatherTrackTest() {
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new WeatherTrackMock());
         Account acc = new Account(Name='Account', BillingCity='New York');
