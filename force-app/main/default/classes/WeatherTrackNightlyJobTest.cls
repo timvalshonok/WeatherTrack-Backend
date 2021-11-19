@@ -2,7 +2,6 @@
 public class WeatherTrackNightlyJobTest {
 
     @isTest static void weatherTrackNightlyJobTest_positive() {
-        
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new WeatherTrackMock());
         WeatherTrackNightlyJob nj = new WeatherTrackNightlyJob();
@@ -16,7 +15,6 @@ public class WeatherTrackNightlyJobTest {
     }
 
     @isTest static void weatherTrackNightlyJobTest_negative() {
-        
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new WeatherTrackMock());
         WeatherTrackNightlyJob nj = new WeatherTrackNightlyJob();
