@@ -1,5 +1,6 @@
 @isTest
 private class AccountTriggerTest {
+    
     @isTest static void createAccountTest() {
         Account acc = new Account(Name='Test Account', BillingCity='Paris');
         
