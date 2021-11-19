@@ -1,5 +1,6 @@
 @isTest
 private class ScheduledNightlyJobTest {
+    
     static testMethod void scheduledNightlyJobTest() {
         test.startTest();
         ScheduledNightlyJob testClass = new ScheduledNightlyJob ();   
