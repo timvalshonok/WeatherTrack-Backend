@@ -1,5 +1,6 @@
 @isTest
 global class WeatherTrackMock implements HttpCalloutMock {
+    
     global HTTPResponse respond(HTTPRequest request) {
         HttpResponse result = new HttpResponse();
         result.setHeader('Content-Type', 'application/json');
